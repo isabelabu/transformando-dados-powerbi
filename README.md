@@ -8,19 +8,23 @@ Descrição do desafio módulo 3 – Processamento de Dados Simplificado com Pow
 ## Problemas na integração e no banco de dados
 ### Obtenção dos dados
    Power BI não conectava ao MySQL, gerando uma mensagem de erro:
+   
    ![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/3bf76f53-26a9-429d-80af-65ad9c57d4fc)
-<br>**Solução:** Instalação da versão 8.0.28 do MySQL, através do link: https://downloads.mysql.com/archives/c-net/
+
+**Solução:** Instalação da versão 8.0.28 do MySQL, através do link: https://downloads.mysql.com/archives/c-net/
 
 ### Erro nos inserts
    Ao tentar inserir os dados nas tabelas, todas mostravam um erro que dizia "cannot add or update a child row"
-   <br>**Solução:** Inserir os dados antes de criar a foreign key fk_employee, já que a existência dela atrapalha na inserção dos dados relacionados a ela e, consequentemente, atrapalha a inserção de todos os dados
+   
+   **Solução:** Inserir os dados antes de criar a foreign key fk_employee, já que a existência dela atrapalha na inserção dos dados relacionados a ela e, consequentemente, atrapalha a inserção de todos os dados
   
 ### Tabelas vazias
    Quando as tabelas eram puxadas para o Power BI, elas não mostravam os dados inseridos
-   <br>**Solução:** Esse é o problema com a solução mais simples, porque basta clicar no ícone no canto superior direito de cada tabela para atualizar os dados.
+   
+   **Solução:** Esse é o problema com a solução mais simples, porque basta clicar no ícone no canto superior direito de cada tabela para atualizar os dados.
 
 ## Transformação dos dados
-Diretrizes para transformação dos dados
+### Diretrizes para transformação dos dados
 1. Verifique os cabeçalhos e tipos de dados
 2. Modifique os valores monetários para o tipo double preciso
 3. Verifique a existência dos nulos e analise a remoção
@@ -54,19 +58,53 @@ Diretrizes para transformação dos dados
 - Coluna Address dividida por delimitador (-) em cada ocorrência
 - Colunas que surgiram da divisão de Address renomeadas para Address_number, Street, City e State
 
-### Nulos e Exclusão de colunas desnecessárias
-- Exclusão das colunas relacionadas às chaves estrangeiras em todas as tabelas para evitar repetições desnecessárias, já que as tabelas serão mescladas
+### Mesclagem e Agrupamento de tabelas
+**Tabela employee com tabela department:**
+- Colaboradores e seus departamentos
 
-**Tabela Departament:**
+![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/15b55092-af27-48ac-961e-a134613f8013)
+
+- Contagem de colaboradores por departamento
+
+![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/ed196d19-e1e9-4332-a63f-7dd6b79e25da)
+
+**Tabela employee:**
+- Colaboradores e seus gerentes
+
+![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/e3b24c91-2185-4704-a1b7-b54f0657f5fb)
+
+- Contagem de colaboradores por gerente
+
+![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/2afd58d2-62f6-48fa-938b-cee06ee665c8)
+
+**Tabela department com tabela dept_locations:**
+- Mesclagem do nome do departamento com sua localização (criado em uma nova consulta)
+- Não podemos usar o Atribuir nesse caso porque as tabelas não possuem a mesma estrutura
+
+![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/4b4830f0-9b7c-45ce-bbba-99bd2029daac)
+
+**Tabela dependent:**
+- Contagem de dependentes por colaborador
+
+![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/5dffc91f-05d7-41c1-9f60-4b6898175db2)
+
+### Nulos e Exclusão de colunas desnecessárias
+- Exclusão das colunas relacionadas às chaves estrangeiras em todas as tabelas para evitar repetições desnecessárias
+
+**Tabela Department:**
 - Exclusão das colunas Mgr_start_date e Dept_create_date, já que elas não são necessárias para a análise
 
 **Tabela Employee:**
-- Para uma análise geral, não é necessário ter o número e a rua do endereço do colaborador, apenas a cidade e o estado. Por isso, as colunas Address_number e Street foram excluídas
+- Para uma análise geral, não é necessário ter a data de nascimento, o número e a rua do endereço do colaborador, apenas a cidade e o estado. Por isso, as colunas Bdate, Address_number e Street foram excluídas
+
+**Tabela Dependent:**
+- Toda a tabela foi excluída, já que a contagem de dependentes por colaborador é suficiente para esse contexto de análise
+
+### Análise dos dados
+**Pontos observados:**
+- Todos os departamentos possuem gerentes
 - O colaborador que tem um gerente nulo é o gerente do departamento
+- Observando a contagem de horas, é possível perceber que um dos colaboradores não está trabalhando (0h)
 
-### Mesclagem de tabelas
-**Tabela employee com tabela Departament:**
-- Com essa junção, foi possível perceber que há departamentos sem gerentes
-- Nessa mesclagem, algumas colunas relacionadas ao colaborador não são necessárias, e por isso foram excluídas
-
-### Inserção de informações
+### Relatório
+![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/017c35c4-ba82-4a0e-ba93-c246f72b276f)
