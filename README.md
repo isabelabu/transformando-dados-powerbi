@@ -7,9 +7,7 @@ Descrição do desafio módulo 3 – Processamento de Dados Simplificado com Pow
 
 ## Problemas na integração e no banco de dados
 ### Obtenção dos dados
-   Power BI não conectava ao MySQL, gerando uma mensagem de erro:
-   
-   ![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/3bf76f53-26a9-429d-80af-65ad9c57d4fc)
+   Power BI não conectava ao MySQL, gerando uma mensagem de erro.
 
 **Solução:** Instalação da versão 8.0.28 do MySQL, através do link: https://downloads.mysql.com/archives/c-net/
 
@@ -61,32 +59,18 @@ Descrição do desafio módulo 3 – Processamento de Dados Simplificado com Pow
 ### Mesclagem e Agrupamento de tabelas
 **Tabela employee com tabela department:**
 - Colaboradores e seus departamentos
-
-![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/15b55092-af27-48ac-961e-a134613f8013)
-
 - Contagem de colaboradores por departamento
-
-![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/ed196d19-e1e9-4332-a63f-7dd6b79e25da)
 
 **Tabela employee:**
 - Colaboradores e seus gerentes
-
-![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/e3b24c91-2185-4704-a1b7-b54f0657f5fb)
-
 - Contagem de colaboradores por gerente
-
-![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/2afd58d2-62f6-48fa-938b-cee06ee665c8)
 
 **Tabela department com tabela dept_locations:**
 - Mesclagem do nome do departamento com sua localização (criado em uma nova consulta)
-- Não podemos usar o Atribuir nesse caso porque as tabelas não possuem a mesma estrutura
-
-![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/4b4830f0-9b7c-45ce-bbba-99bd2029daac)
+- Não podemos usar o Atribuir nesse caso porque as tabelas não possuem a mesma estrutu
 
 **Tabela dependent:**
 - Contagem de dependentes por colaborador
-
-![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/5dffc91f-05d7-41c1-9f60-4b6898175db2)
 
 ### Nulos e Exclusão de colunas desnecessárias
 - Exclusão das colunas relacionadas às chaves estrangeiras em todas as tabelas para evitar repetições desnecessárias
@@ -105,6 +89,3 @@ Descrição do desafio módulo 3 – Processamento de Dados Simplificado com Pow
 - Todos os departamentos possuem gerentes
 - O colaborador que tem um gerente nulo é o gerente do departamento
 - Observando a contagem de horas, é possível perceber que um dos colaboradores não está trabalhando (0h)
-
-### Relatório
-![image](https://github.com/isabelabu/transformando-dados-powerbi/assets/113195403/017c35c4-ba82-4a0e-ba93-c246f72b276f)
